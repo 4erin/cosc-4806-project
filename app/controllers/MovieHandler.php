@@ -1,9 +1,9 @@
 <?php
-namespace app\controllers;
+namespace App\Controllers;
 
-use app\models\Film;
-use app\models\Rating;
-use app\models\User;
+use App\Models\Film;
+use App\Models\Rating;
+use App\Models\User;
 
 class MovieHandler {
     public function search() {

@@ -1,7 +1,7 @@
 <?php
-namespace app\Models;
+namespace App\Models;
 
-use app\Core\Database;
+use App\Core\Database;
 use PDO;
 
 class Rating {

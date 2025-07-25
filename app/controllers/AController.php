@@ -1,7 +1,7 @@
 <?php
-namespace app\controllers;
+namespace App\Controllers;
 
-use app\models\User;
+use App\Models\User;
 
 class AController {
     public function login() {

@@ -1,15 +1,23 @@
 <?php
 session_start();
 
+// ✅ Autoloader — fix for lowercase folders like 'controllers', 'models', etc.
 spl_autoload_register(function ($class) {
-    $class = str_replace('App\\', '', $class); // Strip the root namespace
-    $class = str_replace('\\', '/', $class);   // Convert \ to /
-    require_once __DIR__ . '/app/' . $class . '.php';
+    if (str_starts_with($class, 'App\\')) {
+        $class = substr($class, 4); // Remove App\
+    }
+
+    $parts = explode('\\', $class);
+    $parts[0] = strtolower($parts[0]); // lowercase 'Controllers', 'Models', etc.
+
+    $path = implode('/', $parts);
+    require_once __DIR__ . '/app/' . $path . '.php';
 });
 
 
-use app\controllers\AController;
-use app\controllers\MovieHandler;
+// ✅ Use proper case-sensitive namespace references
+use App\Controllers\AController;
+use App\Controllers\MovieHandler;
 
 $action = $_GET['action'] ?? '';
 

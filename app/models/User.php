@@ -1,7 +1,7 @@
 <?php
-namespace app\models;
+namespace App\Models;
 
-use app\core\Database;
+use App\Core\Database;
 use PDO;
 
 class User {
