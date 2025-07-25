@@ -27,8 +27,14 @@ class Rating {
         $stmt = $this->db->prepare("SELECT AVG(rating) as avg FROM ratings WHERE imdb_id = ?");
         $stmt->execute([$imdb_id]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return round($result['avg'], 1);
+
+        if ($result && $result['avg'] !== null) {
+            return round($result['avg'], 1);
+        }
+
+        return null; // or return 0; or return "Not rated";
     }
+
 
     public function getUserRating($user_id, $imdb_id) {
         $stmt = $this->db->prepare("SELECT rating FROM ratings WHERE user_id = ? AND imdb_id = ?");

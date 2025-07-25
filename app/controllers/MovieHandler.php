@@ -45,11 +45,13 @@ class MovieHandler {
         $film = new Film();
         $movie = $film->getById($imdbID);
 
-        $desc = $movie['Title'] . " is a " . $movie['Genre'] . " movie directed by " . $movie['Director'];
-        $prompt = "Give a short and engaging movie review for: $desc.";
+        // Build prompt
+        $desc = $movie['Title'] . " is a " . $movie['Genre'] . " movie directed by " . $movie['Director'] . ". Plot: " . $movie['Plot'];
+        $prompt = "Write a short and engaging AI-generated movie review for the following description:\n\n$desc";
 
         $response = $this->generateAIReview($prompt);
-        echo "<div class='review-box'><h3>🎥 AI Review</h3><p>" . htmlspecialchars($response) . "</p><a href='index.php?action=details&id=$imdbID'>⬅ Back</a></div>";
+
+        echo "<div class='review-box'><h3>🎥 AI Review</h3><p>" . nl2br(htmlspecialchars($response)) . "</p><a href='index.php?action=details&id=$imdbID'>⬅ Back</a></div>";
     }
 
     private function generateAIReview($prompt) {
@@ -68,6 +70,15 @@ class MovieHandler {
         curl_close($ch);
 
         $json = json_decode($response, true);
-        return $json['candidates'][0]['content']['parts'][0]['text'] ?? "Review generation failed.";
+
+        if (isset($json['candidates'][0]['content']['parts'][0]['text'])) {
+            return $json['candidates'][0]['content']['parts'][0]['text'];
+        }
+
+        if (isset($json['error']['message'])) {
+            return "Gemini API error: " . $json['error']['message'];
+        }
+
+        return "Review generation failed.";
     }
 }
