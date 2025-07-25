@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="auth-box">
-        <h2>🎬 Login</h2>
+        <h2>Login</h2>
 
         <?php if (!empty($error)): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
