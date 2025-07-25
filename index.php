@@ -6,8 +6,8 @@ spl_autoload_register(function ($class) {
     require_once __DIR__ . '/app/' . $class . '.php';
 });
 
-use App\Controllers\AController;
-use App\Controllers\MovieHandler;
+use app\controllers\AController;
+use app\controllers\MovieHandler;
 
 $action = $_GET['action'] ?? '';
 
