@@ -2,9 +2,11 @@
 session_start();
 
 spl_autoload_register(function ($class) {
-    $class = str_replace('\\', '/', $class);
+    $class = str_replace('App\\', '', $class); // Strip the root namespace
+    $class = str_replace('\\', '/', $class);   // Convert \ to /
     require_once __DIR__ . '/app/' . $class . '.php';
 });
+
 
 use app\controllers\AController;
 use app\controllers\MovieHandler;
