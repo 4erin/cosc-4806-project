@@ -110,3 +110,40 @@ a:hover {
     padding: 20px;
     border-left: 4px solid #ffc107;
 }
+.review-box {
+    background-color: #1e1e1e;
+    padding: 25px;
+    margin: 50px auto;
+    max-width: 700px;
+    border-left: 5px solid #ffc107;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.2);
+}
+
+.review-box h3 {
+    font-size: 24px;
+    color: #ffc107;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+}
+
+.review-box p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    white-space: pre-wrap;
+}
+
+.review-box a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #66ccff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.review-box a:hover {
+    text-decoration: underline;
+}

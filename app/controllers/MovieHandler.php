@@ -50,8 +50,17 @@ use App\Models\Rating;
 
             $response = $this->generateAIReview($prompt);
 
-            echo "<div class='review-box'><h3>🎥 AI Review</h3><p>" . nl2br(htmlspecialchars($response)) . "</p><a href='index.php?action=details&id=$imdbID'>⬅ Back</a></div>";
+            // Convert **bold** markdown to HTML
+            $html = nl2br($response);
+            $html = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $html);
+
+            echo "<div class='review-box'>
+                    <h3>🎥 AI Review</h3>
+                    <p>$html</p>
+                    <a href='index.php?action=details&id=$imdbID'>⬅ Back</a>
+                  </div>";
         }
+
 
         private function generateAIReview($prompt) {
             $key = $_ENV['gemini'] ?? getenv('gemini');
