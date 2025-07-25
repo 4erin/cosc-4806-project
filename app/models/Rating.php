@@ -32,7 +32,7 @@ class Rating {
             return round($result['avg'], 1);
         }
 
-        return null; // or return 0; or return "Not rated";
+        return null; 
     }
 
 
