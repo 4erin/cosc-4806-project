@@ -50,7 +50,7 @@ use App\Models\Rating;
 
             $response = $this->generateAIReview($prompt);
 
-            // Convert **bold** markdown to HTML
+            
             $html = nl2br($response);
             $html = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $html);
 
